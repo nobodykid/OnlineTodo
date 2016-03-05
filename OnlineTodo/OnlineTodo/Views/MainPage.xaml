@@ -10,25 +10,24 @@
       xmlns:vm="using:OnlineTodo.ViewModels" mc:Ignorable="d">
 
     <Page.DataContext>
-        <vm:MainPageViewModel x:Name="ViewModel" />
+        <vm:MainPageViewModel x:Name="ViewModel"/>
     </Page.DataContext>
 
-    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-        <controls:PageHeader x:Name="pageHeader" Content="Main Page">
-            <!--  place stretched, across top  -->
-            <RelativePanel.AlignTopWithPanel>True</RelativePanel.AlignTopWithPanel>
-            <RelativePanel.AlignRightWithPanel>True</RelativePanel.AlignRightWithPanel>
-            <RelativePanel.AlignLeftWithPanel>True</RelativePanel.AlignLeftWithPanel>
-        </controls:PageHeader>
+        <controls:PageHeader x:Name="pageHeader" Content="Online To-do List" />
 
-        <TextBlock x:Name="mainTextBlock" Margin="16,12,0,0" Text="Hello World">
-            <!--  place below page header  -->
-            <RelativePanel.Below>pageHeader</RelativePanel.Below>
-            <RelativePanel.AlignLeftWithPanel>True</RelativePanel.AlignLeftWithPanel>
-        </TextBlock>
+        <Grid x:Name="mainTextBlock" Margin="16,12,0,0" Grid.Row="1">
+            <ListView>
+                
+            </ListView>
+        </Grid>
 
-    </RelativePanel>
+    </Grid>
 
 </Page>
 

@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace OnlineTodo
 {
@@ -9,6 +10,8 @@ namespace OnlineTodo
 
     sealed partial class App : Template10.Common.BootStrapper
     {
+        public static MobileServiceClient MobileService = new MobileServiceClient("https://samplemobilebackend.azurewebsites.net");
+
         public App() { InitializeComponent(); }
 
         public override async Task OnInitializeAsync(IActivatedEventArgs args)
