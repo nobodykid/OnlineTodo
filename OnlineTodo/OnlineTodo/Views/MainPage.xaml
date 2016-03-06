@@ -4,6 +4,7 @@
       xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:controls="using:Template10.Controls"
+      xmlns:behaviors="using:Template10.Behaviors"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:OnlineTodo.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -19,11 +20,46 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <controls:PageHeader x:Name="pageHeader" Content="Online To-do List" />
+        <controls:PageHeader x:Name="pageHeader" Content="Online To-do List" >
+            <controls:PageHeader.PrimaryCommands>
+                
+                <AppBarButton Icon="Add" Label="add">
+                    
+                    <FlyoutBase.AttachedFlyout>
+                        <Flyout>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox x:Name="contentTxt" PlaceholderText="content" Width="200"/>
+                                <Button Content="OK" Margin="8,0,0,0" Click="Button_Click">
+                                    <Interactivity:Interaction.Behaviors>
+                                        <Core:EventTriggerBehavior EventName="Click">
+                                            <behaviors:CloseFlyoutAction/>
+                                        </Core:EventTriggerBehavior>
+                                    </Interactivity:Interaction.Behaviors>
+                                </Button>
+                            </StackPanel>
+                        </Flyout>
+                    </FlyoutBase.AttachedFlyout>
+                    
+                    <Interactivity:Interaction.Behaviors>
+                        <Core:EventTriggerBehavior EventName="Tapped">
+                            <behaviors:OpenFlyoutAction/>
+                        </Core:EventTriggerBehavior>
+                    </Interactivity:Interaction.Behaviors>
+                </AppBarButton>
+                
+            </controls:PageHeader.PrimaryCommands>
+        </controls:PageHeader>
 
         <Grid x:Name="mainTextBlock" Margin="16,12,0,0" Grid.Row="1">
-            <ListView>
-                
+            <ListView x:Name="ItemList" ItemsSource="{Binding Items}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Checked="CheckBox_Checked" IsChecked="{Binding Complete}"/>
+                            <TextBlock Text="{Binding Text}" Margin="2,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </Grid>
 
