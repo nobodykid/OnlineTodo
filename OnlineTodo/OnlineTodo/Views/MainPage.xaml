@@ -55,8 +55,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Checked="CheckBox_Checked" IsChecked="{Binding Complete}"/>
-                            <TextBlock Text="{Binding Text}" Margin="2,0,0,0" VerticalAlignment="Center"/>
+                            <CheckBox Checked="CheckBox_Checked" IsChecked="{Binding Complete, Mode=TwoWay}" Content="{Binding Text}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
