@@ -17,23 +17,20 @@ namespace OnlineTodo.ViewModels
 
         public async Task AddNewItem (TodoItem _item)
         {
-            // Menambahkan Item baru ke dalam list dan database
+            // Task untuk menambahkan item baru ke dalam list dan database
 
             await todoTable.InsertAsync(_item);
-            Items.Add(_item);
-                        
-            // also provide offline features
+            Items.Add(_item);                                    
         }
 
         public async Task UpdateCheckedItem (TodoItem _item)
         {
-            // Digunakan untuk update database di mana Item yang di-check
+            // Digunakan untuk update database di mana item yang di-check
             // akan memiliki nilai Checked = true
+            // dan juga akan menghapus item yang telah dicek dari list
 
             await todoTable.UpdateAsync(_item);
             Items.Remove(_item);            
-
-            //await SyncAsync(); // offline sync
         }        
     }
 }

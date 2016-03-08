@@ -41,8 +41,10 @@ namespace OnlineTodo.Views
         {            
             try
             {
-                // This code refreshes the entries in the list view by querying the TodoItems table.
-                // The query excludes completed TodoItems.
+                // Task ini berfungsi sebagai refresh saat aplikasi mengakses database untuk pertama kali
+                // Task ini akan melihat semua item dengan Checked = false
+                // lalu menampilkannya ke list
+
                 vm.Items = await vm.todoTable
                     .Where(todoItem => todoItem.Complete == false)
                     .ToCollectionAsync();
